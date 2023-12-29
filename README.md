@@ -30,7 +30,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
 
 * **Rule 1 (Product Rule):** $\log{_b}(M*N) = \log{_b}M + \log{_b}N$ [ b, M and N are positive integers and b ≠ 1 ]
 * **Rule 2 (Quotient Rule):** $\log{_b}(M/N) = \log{_b}M - \log{_b}N$ [ b, M and N are positive integers and b ≠ 1 ]
-* **Rule 3 (Power Rule):** $\log{_b}(M^k) = k*\log{_b}M$ [ b and M are positive numbers, b ≠ 1 and k is a real number ]
+* **Rule 3 (Power Rule):** $\log{_b}(M^k) = k*\log{_b}M$ [ b and M are positive numbers, b ≠ 1 and $k \ \epsilon \ \mathbb{R}$ ]
 * **Rule 4 (Change of Base Rule):** $\log{_b}(M) = \log{_k}M / \log{_k}b$ [ M, b and k are positive numbers and b ≠ 1, k ≠ 1 ]
 * **Rule 5 (Reciprocal Rule):** $\log{_b}(M) = 1 / \log{_M}b$ [ M and b are the positive numbers other than 1 ]
 * **Rule 6:** $\log{_b}(1) = 0$ [ $b \gt 0$ and $b \neq 1$ ]
