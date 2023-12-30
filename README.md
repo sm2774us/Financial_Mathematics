@@ -10,7 +10,8 @@ Personal Repository for Quantitative Finance and AI/ML topics
     - 4.1. [One-period return - Python Example](#one-period-return---python-example)
     - 4.2. [One-period return - R Example](#one-period-return---r-example)
 5. [Linear Algebra With Python](#linear-algebra-with-python)
- 
+6. [Covariance and Correlation Matrix of Stock Returns](#covariance-and-correlation-matrix-of-stock-returns)
+
 ### Rules of Numbers
 
 * **Commutative Laws:** $a + b  =  b + a \ \ \ \ a * b  =  b * a \ \ \ \ {a \ \ \\% \ \ of \ \ b}  =  {b \ \ \\% \ \ of \ \ a}$
