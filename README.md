@@ -1,6 +1,13 @@
 # Finance_and_AI_ML
 Personal Repository for Quantitative Finance and AI/ML topics
 
+## Table Of Contents <a name="top"></a>
+
+1. [Rules of Numbers](#rules-of-numbers)  
+2. [Rules of Exponents](#rules-of-exponents)
+3. [Rules of Logarithms](#rules-of-logarithms)
+4. [Calculating Returns](#calculating-returns)
+
 ### Rules of Numbers
 
 * **Commutative Laws:** $a + b  =  b + a \ \ \ \ a * b  =  b * a \ \ \ \ {a \ \ \\% \ \ of \ \ b}  =  {b \ \ \\% \ \ of \ \ a}$
@@ -20,11 +27,15 @@ Personal Repository for Quantitative Finance and AI/ML topics
     * 24 / (4 + 8) = 24 / 12 = 2, but
     * 24 / 4 + 24 / 8 = 6 + 3 = 9 
 
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back to up-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+
 ### Rules of Exponents
 
 * **Rule 1 (Product Rule):** $a^m*a^n = a^{m+n}$
 * **Rule 2 (Quotient Rule):** $a^m/a^n = a^{m-n}$
 * **Rule 3 (Power of a Power Rule):** $(a^m)^n = a^{mn}$
+
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back to up-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
 
 ### Rules of Logarithms
 
@@ -38,6 +49,12 @@ Personal Repository for Quantitative Finance and AI/ML topics
 * **Rule 8:** $\log{_b}(b^k) = k$ [ $b \gt 0$ and $b \neq 1$ and $k \ \epsilon \ \mathbb{R}$ ]
 * **Rule 9:** $b^{\log{_b}(k)} = k$ [ $b \gt 0$ and $b \neq 1$ and $k \ \epsilon \ \mathbb{R}$ ]
 
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back to up-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+
+### Calculating Returns
+
 ```python
 
 ```
+
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back to up-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
