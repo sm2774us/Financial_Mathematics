@@ -80,7 +80,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
 
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
 
-### Calculating Returns
+### Simple Returns
 
 A return, also known as a financial return, in its simplest terms, is the money made or lost on an investment over some period of time.
 
@@ -88,7 +88,7 @@ A return is a percentage defined as the change of price expressed as a fraction 
 
 Returns exhibit more attractive statistical properties than asset prices themselves. Therefore it also makes more statistical sense to analyze return data rather than price series.
 
-One-period return
+Simple Returns (or, One-period Return)
 Holding an asset from time $t − 1$ to $t$, the value of the asset changes from  $P{_{t−1}}$
   to  $P{_t}$. Assuming that no dividends paid are over the period.
 
@@ -104,7 +104,7 @@ It is the ratio of the new market value at the end of the holding period over th
 
 Python: We will use formula (a) and pandas built in function pct_change to compute the simple returns for each day, for AAPL.
 
-#### One-period return - Python Example
+#### Simple Returns - Python Example
 
 ```python
 import pandas as pd 
@@ -122,7 +122,7 @@ df.rename(columns={'Adj Close':'adj_close'}, inplace=True)
 df['simple_rtn'] = df.adj_close.pct_change()
 ```
 
-#### One-period return - R Example
+#### Simple Returns - R Example
 
 ```R
 # load the "dplyr" package
