@@ -7,7 +7,9 @@ Personal Repository for Quantitative Finance and AI/ML topics
 2. [Rules of Exponents](#rules-of-exponents)
 3. [Rules of Logarithms](#rules-of-logarithms)
 4. [Calculating Returns](#calculating-returns)
-
+ - 4.1   [One-period return - Python Example](#one-period-return-python-example)
+ - 4.2   [One-period return - R Example](#one-period-return-r-example)
+ 
 ### Rules of Numbers
 
 * **Commutative Laws:** $a + b  =  b + a \ \ \ \ a * b  =  b * a \ \ \ \ {a \ \ \\% \ \ of \ \ b}  =  {b \ \ \\% \ \ of \ \ a}$
@@ -75,6 +77,8 @@ It is the ratio of the new market value at the end of the holding period over th
 
 Python: We will use formula (a) and pandas built in function pct_change to compute the simple returns for each day, for AAPL.
 
+#### One-period return - Python Example
+
 ```python
 import pandas as pd 
 import numpy as np
@@ -90,6 +94,8 @@ df.rename(columns={'Adj Close':'adj_close'}, inplace=True)
 
 df['simple_rtn'] = df.adj_close.pct_change()
 ```
+
+#### One-period return - R Example
 
 ```R
 # load the "dplyr" package
