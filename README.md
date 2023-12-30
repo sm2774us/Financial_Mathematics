@@ -7,8 +7,8 @@ Personal Repository for Quantitative Finance and AI/ML topics
 2. [Rules of Exponents](#rules-of-exponents)
 3. [Rules of Logarithms](#rules-of-logarithms)
 4. [Calculating Returns](#calculating-returns)
- - 4.1   [One-period return - Python Example](#one-period-return-python-example)
- - 4.2   [One-period return - R Example](#one-period-return-r-example)
+    - 4.1. [One-period return - Python Example](#one-period-return---python-example)
+    - 4.2. [One-period return - R Example](#one-period-return---r-example)
  
 ### Rules of Numbers
 
