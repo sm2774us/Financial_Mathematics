@@ -9,6 +9,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
 4. [Calculating Returns](#calculating-returns)
     - 4.1. [One-period return - Python Example](#one-period-return---python-example)
     - 4.2. [One-period return - R Example](#one-period-return---r-example)
+5. [Linear Algebra With Python](#linear-algebra-with-python)
  
 ### Rules of Numbers
 
