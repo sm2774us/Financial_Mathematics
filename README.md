@@ -53,8 +53,83 @@ Personal Repository for Quantitative Finance and AI/ML topics
 
 ### Calculating Returns
 
-```python
+A return, also known as a financial return, in its simplest terms, is the money made or lost on an investment over some period of time.
 
+A return is a percentage defined as the change of price expressed as a fraction of the initial price.
+
+Returns exhibit more attractive statistical properties than asset prices themselves. Therefore it also makes more statistical sense to analyze return data rather than price series.
+
+One-period return
+Holding an asset from time $t − 1$ to $t$, the value of the asset changes from  $P{_{t−1}}$
+  to  $P{_t}$. Assuming that no dividends paid are over the period.
+
+Then the one-period simple return is defined as:
+
+$$R_{t} = \frac{P_{t} - P_{t-1}}{P_{t-1}} \ \ (a)$$
+
+The one period gross return is defined as:
+
+$$\frac{P_{t}}{P_{t-1}} = {R_{t}} + 1$$
+ 
+It is the ratio of the new market value at the end of the holding period over the initial market value.
+
+Python: We will use formula (a) and pandas built in function pct_change to compute the simple returns for each day, for AAPL.
+
+```python
+import pandas as pd 
+import numpy as np
+import yfinance as yf
+
+df = yf.download('AAPL', 
+                 start='2000-01-01', 
+                 end='2010-12-31',
+                 progress=False)
+
+df = df.loc[:, ['Adj Close']]
+df.rename(columns={'Adj Close':'adj_close'}, inplace=True)
+
+df['simple_rtn'] = df.adj_close.pct_change()
+```
+
+```R
+# load the "dplyr" package
+library(dplyr)
+# load the "quantmod" package
+library(quantmod)
+
+# Get Apple stock quotes (daily).
+AAPL <- getSymbols('AAPL',
+                   from = '2016/12/31',
+                   to = '2018/12/31',
+                   periodicity = 'daily')
+## 'getSymbols' currently uses auto.assign=TRUE by default, but will
+## use auto.assign=FALSE in 0.5-0. You will still be able to use
+## 'loadSymbols' to automatically load data. getOption("getSymbols.env")
+## and getOption("getSymbols.auto.assign") will still be checked for
+## alternate defaults.
+## 
+## [1] "AAPL"
+
+# shift the series back by one period and compute returns
+r <- df$AAPL.Adjusted/lag(df$AAPL.Adjusted, k = 1) - 1
+
+# Do the same calculation above as a data frame.
+dat <- AAPL
+df <- as.data.frame(sapply( names(dat), function(x) coredata(dat[[x]])[,6] ))
+
+## Note that this takes the Adjusted close values (see: dat[[x]])[,6]), the Objects have more, e.g.:
+
+## names(dat[["AAPL"]])
+## [1] "AAPL.Open"     "AAPL.High"     "AAPL.Low"      "AAPL.Close"
+## [5] "AAPL.Volume"   "AAPL.Adjusted"
+
+rownames(df) <-
+    as.data.frame( sapply( names(dat), function(x) as.character(index(dat[[x]])) ) )[,1]
+
+df %>% 
+  mutate(lagged = lag(AAPL)) %>% 
+  mutate(simple_rtn = (AAPL - lagged) / lagged) %>% 
+  select(-lagged)
 ```
 
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
