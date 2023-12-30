@@ -27,7 +27,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
     * 24 / (4 + 8) = 24 / 12 = 2, but
     * 24 / 4 + 24 / 8 = 6 + 3 = 9 
 
-<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back to up-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
 
 ### Rules of Exponents
 
@@ -35,7 +35,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
 * **Rule 2 (Quotient Rule):** $a^m/a^n = a^{m-n}$
 * **Rule 3 (Power of a Power Rule):** $(a^m)^n = a^{mn}$
 
-<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back to up-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
 
 ### Rules of Logarithms
 
@@ -49,7 +49,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
 * **Rule 8:** $\log{_b}(b^k) = k$ [ $b \gt 0$ and $b \neq 1$ and $k \ \epsilon \ \mathbb{R}$ ]
 * **Rule 9:** $b^{\log{_b}(k)} = k$ [ $b \gt 0$ and $b \neq 1$ and $k \ \epsilon \ \mathbb{R}$ ]
 
-<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back to up-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
 
 ### Calculating Returns
 
@@ -57,4 +57,4 @@ Personal Repository for Quantitative Finance and AI/ML topics
 
 ```
 
-<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back to up-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
