@@ -23,6 +23,8 @@ Personal Repository for Quantitative Finance and AI/ML topics
         - 5.3.1. [Log Returns - Python Example](#log-returns---python-example)
         - 5.3.2. [Log Returns - R Example](#log-returns---r-example)
         - 5.3.3. [Reference: Introduction To Computational Finance And Financial Econometrics With R](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/IntroductionToComputationalFinanceAndFinancialEconometricsWithR.pdf)
+    - 5.4. [Matching Log Returns With Cumulative Returns - Python Example](#matching-log-returns-with-cumulative-returns---python-example)
+    - 5.5. [Matching Log Returns With Cumulative Returns - R Example](#matching-log-returns-with-cumulative-returns---r-example)
 6. [Linear Algebra With Python](#linear-algebra-with-python)
     - 6.1. [Chapter 1 - Linear Equation System](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Linear%20Algebra%20With%20Python/Chapter%201%20-%20Linear%20Equation%20System.ipynb)
     - 6.2. [Chapter 2 - Basic Matrix Algebra.ipynb](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Linear%20Algebra%20With%20Python/Chapter%202%20-%20Basic%20Matrix%20Algebra.ipynb)
