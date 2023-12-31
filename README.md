@@ -7,7 +7,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
 2. [Rules of Exponents](#rules-of-exponents)
 3. [Rules of Logarithms](#rules-of-logarithms)
 4. [The Time Value of Money](#the-time-value-of-money)
-    - 4.1. [Future value, present value and simple interest](#future-value--present-value-and-simple-interest)
+    - 4.1. [Future value, present value and simple interest](#future-value-present-value-and-simple-interest)
     - 4.2. [Multiple compounding periods](#multiple-compounding-periods)
     - 4.3. [Effective annual rate](#effective-annual-rate)
 5. [Asset Return Calculations](#asset-return-calculations)
