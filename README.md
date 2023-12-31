@@ -15,9 +15,9 @@ Personal Repository for Quantitative Finance and AI/ML topics
         - 5.1.1. [Simple Returns - Python Example](#simple-returns---python-example)
         - 5.1.2. [Simple Returns - R Example](#simple-returns---r-example)
         - 5.1.3. [Reference: Introduction To Computational Finance And Financial Econometrics With R](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/IntroductionToComputationalFinanceAndFinancialEconometricsWithR.pdf)
-    - 5.2. [Cumulative Returns](#cumulative-returns)
-        - 5.2.1. [Cumulative Returns - Python Example](#cumulative-returns---python-example)
-        - 5.2.2. [Cumulative Returns - R Example](#cumulative-returns---r-example)
+    - 5.2. [Cumulative Returns (or, Multiperiod Returns)](#cumulative-returns-or-multiperiod-returns)
+        - 5.2.1. [Cumulative Returns (or, Multiperiod Returns) - Python Example](#cumulative-returns-or-multiperiod-returns---python-example)
+        - 5.2.2. [Cumulative Returns (or, Multiperiod Returns) - R Example](#cumulative-returns-or-multiperiod-returns---r-example)
         - 5.2.3. [Reference: Introduction To Computational Finance And Financial Econometrics With R](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/IntroductionToComputationalFinanceAndFinancialEconometricsWithR.pdf)
     - 5.3. [Log Returns](#log-returns)
         - 5.3.1. [Log Returns - Python Example](#log-returns---python-example)
@@ -580,27 +580,187 @@ r.cum <- cumprod(1+r) - 1
 # build a data.frame containing simple returns
 df <- data.frame(r.cum)
 colnames(df) <- c('cumulative_rtn')
+```
 
-## Do the same calculation above as a data frame.
-#dat <- AAPL
-#df <- as.data.frame(sapply( names(dat), function(x) coredata(dat[[x]])[,6] ))
-#
-### Note that this takes the Adjusted close values (see: dat[[x]])[,6]), the Objects have more, e.g.:
-#
-### names(dat[["AAPL"]])
-### [1] "AAPL.Open"     "AAPL.High"     "AAPL.Low"      "AAPL.Close"
-### [5] "AAPL.Volume"   "AAPL.Adjusted"
-#
-#rownames(df) <-
-#    as.data.frame( sapply( names(dat), function(x) as.character(index(dat[[x]])) ) )[,6]
-#
-#df %>% 
-#  mutate(lagged = lag(AAPL)) %>% 
-#  mutate(simple_rtn = (AAPL - lagged) / lagged) %>% 
-#  select(-lagged)
-#
-## remove redundant data
-#df <- df[, (names(df) %in% c('simple_rtn'))]
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+
+### Log Returns
+
+We calculate log returns as
+
+$$r_{t} = \frac{log(P_{t})}{log(P_{t-1})} = log(P_{t}) - log(P_{t-1})
+
+where $P$ is the price of an asset and t is a time period.
+
+#### Log Returns - Python Example
+
+Python: We will use formula (a) and pandas built in function pct_change to compute the simple returns for each day, for AAPL.
+
+```python
+import pandas as pd 
+import numpy as np
+import yfinance as yf
+
+df = yf.download('AAPL', 
+                 start='2000-01-01', 
+                 end='2010-12-31',
+                 progress=False)
+
+df = df.loc[:, ['Adj Close']]
+df.rename(columns={'Adj Close':'adj_close'}, inplace=True)
+
+df['simple_rtn'] = df.adj_close.pct_change()
+df['log_rtn'] = np.log(1 + df['simple_rtn'])
+#or, we can calculate directly as follows:
+#df['log_ret'] = np.log(df.adj_close) - np.log(df.adj_close.shift(1))
+
+# remove redundant data
+df.drop(columns=['adj_close', 'simple_rtn'], inplace=True)
+```
+
+#### Log Returns - R Example
+
+```R
+## load the "dplyr" package
+#library(dplyr)
+# load the "quantmod" package
+library(quantmod)
+
+# Get Apple stock quotes (daily).
+AAPL <- getSymbols('AAPL',
+                   from = '2016/12/31',
+                   to = '2018/12/31',
+                   periodicity = 'daily')
+## 'getSymbols' currently uses auto.assign=TRUE by default, but will
+## use auto.assign=FALSE in 0.5-0. You will still be able to use
+## 'loadSymbols' to automatically load data. getOption("getSymbols.env")
+## and getOption("getSymbols.auto.assign") will still be checked for
+## alternate defaults.
+## 
+## [1] "AAPL"
+
+# shift the series back by one period and compute returns
+r <- df$AAPL.Adjusted/lag(df$AAPL.Adjusted, k = 1) - 1
+
+# shift the series back by one period and compute log-returns
+r.log <- log(AAPL$AAPL.Close) - log(lag(AAPL$AAPL.Close, k = 1))
+
+# drop NA from data
+# Returns cannot be computed for the first observation, as there is no previous observation to use. R returns NA in this case. Clean the data.
+r <- na.omit(r)
+# drop NA from data
+r.log <- na.omit(r.log)
+
+# build a data.frame containing simple returns
+df <- data.frame(r.log)
+colnames(df) <- c('log_rtn')
+```
+
+#### Matching Log Returns with Cumulative Returns - Python Example
+
+**Cumulative Returns**
+
+Compute the standard returns with respect to the first observation at each point in time ($R_{t,0}$ for every $t$). Use the following approaches:
+
+  * (RIGHT) cumulate standard daily returns
+  * (RIGHT) cumulate log-returns and convert to standard return using the following property: $r=ln(1+R)→R=exp(r)−1$
+  * (WRONG) cumulate log-returns as if they were standard returns. This holds approximately, and the error becomes larger and larger when cumulating more and more returns
+
+Python: We will use formula (a) and pandas built in function pct_change to compute the simple returns for each day, for AAPL.
+
+```python
+import pandas as pd 
+import numpy as np
+import yfinance as yf
+
+df = yf.download('AAPL', 
+                 start='2000-01-01', 
+                 end='2010-12-31',
+                 progress=False)
+
+df = df.loc[:, ['Adj Close']]
+df.rename(columns={'Adj Close':'adj_close'}, inplace=True)
+
+df['simple_rtn'] = df.adj_close.pct_change()
+df['log_rtn'] = np.log(1 + df['simple_rtn'])
+#or, we can calculate directly as follows:
+#df['log_ret'] = np.log(df.adj_close) - np.log(df.adj_close.shift(1))
+df['cumulative_rtn'] = (1 + df['simple_rtn']).cumprod() - 1
+df['log_rtn_vs_cumulative_rtn'] = np.exp(np.log(1 + df['simple_rtn']).cumsum())-1
+
+# remove redundant data
+df.drop(columns=['adj_close', 'simple_rtn', 'log_rtn'], inplace=True)
+```
+
+#### Matching Log Returns with Cumulative Returns - R Example
+
+**Cumulative Returns**
+
+Compute the standard returns with respect to the first observation at each point in time ($R_{t,0}$ for every $t$). Use the following approaches:
+
+  * (RIGHT) cumulate standard daily returns
+  * (RIGHT) cumulate log-returns and convert to standard return using the following property: $r=ln(1+R)→R=exp(r)−1$
+  * (WRONG) cumulate log-returns as if they were standard returns. This holds approximately, and the error becomes larger and larger when cumulating more and more returns
+
+```R
+## load the "dplyr" package
+#library(dplyr)
+# load the "quantmod" package
+library(quantmod)
+
+# Get Apple stock quotes (daily).
+AAPL <- getSymbols('AAPL',
+                   from = '2016/12/31',
+                   to = '2018/12/31',
+                   periodicity = 'daily')
+## 'getSymbols' currently uses auto.assign=TRUE by default, but will
+## use auto.assign=FALSE in 0.5-0. You will still be able to use
+## 'loadSymbols' to automatically load data. getOption("getSymbols.env")
+## and getOption("getSymbols.auto.assign") will still be checked for
+## alternate defaults.
+## 
+## [1] "AAPL"
+
+# shift the series back by one period and compute returns
+r <- df$AAPL.Adjusted/lag(df$AAPL.Adjusted, k = 1) - 1
+
+# shift the series back by one period and compute log-returns
+r.log <- log(AAPL$AAPL.Close) - log(lag(AAPL$AAPL.Close, k = 1))
+
+# drop NA from data
+# Returns cannot be computed for the first observation, as there is no previous observation to use. R returns NA in this case. Clean the data.
+r <- na.omit(r)
+# drop NA from data
+r.log <- na.omit(r.log)
+# calculate cumulative returns
+r.cum <- cumprod(1+r) - 1
+
+# cumulate log-returns and convert to standard returns
+r.log.cum.right <- exp(cumsum(r.log)) - 1
+# cumulate log-returns as if they were standard returns
+r.log.cum.wrong <- cumprod(1+r.log) -1 
+
+# create a unique xts object 
+x <- merge(r.cum, r.log.cum.wrong, r.log.cum.right)
+colnames(x) <- c('R', 'r.wrong', 'r.right')
+# plot and compare
+plot(x, legend.loc = 'topleft', main = 'Cumulative return computation')
+```
+
+![cumulative return computation](./assets/log-vs-cumulative-returns.png)
+
+The green line coincides with the black one. This can be checked printing the values.
+
+```R
+# print values
+head(x)
+##                     R    r.wrong    r.right
+## 2007-01-04 0.02219568 0.02195294 0.02219568
+## 2007-01-05 0.01491643 0.01464939 0.01491643
+## 2007-01-08 0.01992836 0.01964767 0.01992836
+## 2007-01-09 0.10465392 0.10101525 0.10465392
+## 2007-01-10 0.15751779 0.15248306 0.15751779
+## 2007-01-11 0.14319811 0.13813675 0.14319811
 ```
 
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
