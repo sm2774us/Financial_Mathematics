@@ -332,29 +332,57 @@ continuously compounded return calculations, which are more convenient for stati
 
 ### Simple Returns
 
-A return, also known as a financial return, in its simplest terms, is the money made or lost on an investment over some period of time.
+Consider purchasing an asset (e.g., stock, bond, ETF, mutual fund, option, etc.) at time $t_{0}$ for the price $P_{t_{0}}$ , and then selling the asset 
+at time $t_{1}$ for the price $P_{t_{1}}$ . If there are no intermediate cash flows (e.g., dividends) between $t{_0}$ and $t{_1}$, the rate of return over the period $t{_0}$ to $t{_1}$ is the percentage change in price:
 
-A return is a percentage defined as the change of price expressed as a fraction of the initial price.
+$$R(t_{0}, t_{1}) = \frac{P_{t_{1}} - P_{t_{0}}}{P_{t_{0}}}. \ \ \ (1.6)$$
 
-Returns exhibit more attractive statistical properties than asset prices themselves. Therefore it also makes more statistical sense to analyze return data rather than price series.
+The time between $t{_0}$ and $t{_1}$ is called the holding period and equation (1.6) is called the holding period return. In principle, 
+the holding period can be any amount of time: one second; five minutes; eight hours; two days, six minutes and two seconds; fifteen years. 
+To simplify matters, in this chapter we will assume that the holding period is some increment of calendar time; e.g., one day, 
+one month or one year. In particular, we will assume a default holding period of one month in what follows.
 
-Simple Returns (or, One-period Return)
-Holding an asset from time $t − 1$ to $t$, the value of the asset changes from  $P{_{t−1}}$
-  to  $P{_t}$. Assuming that no dividends paid are over the period.
+Let $P_{t}$ denote the price at the end of month $t$ of an asset that pays no dividends and let $P_{t-1}$ denote the price at the end of month $t-1$. Then the one-month simple net return on an investment in the asset between months $t-1$ and $t$ is defined as:
 
-Then the one-period simple return is defined as:
+$$R_{t} = \frac{P_{t} - P_{t-1}}{P_{t-1}} = %\Delta P_{t}. \ \ \ (1.7)$$
 
-$$R_{t} = \frac{P_{t} - P_{t-1}}{P_{t-1}} \ \ (a)$$
+Writing 
 
-The one period gross return is defined as:
+$$\frac{P_{t} - P_{t-1}}{P_{t-1}} = \frac{P_{t}}{P_{t-1}} - 1,$$
 
-$$\frac{P_{t}}{P_{t-1}} = {R_{t}} + 1$$
- 
-It is the ratio of the new market value at the end of the holding period over the initial market value.
+we can define the simple gross return as:
 
-Python: We will use formula (a) and pandas built in function pct_change to compute the simple returns for each day, for AAPL.
+$$1 + R_{t} = \frac{P_{t}}{P_{t-1}}. \ \ \ (1.8)$$
+
+The one-month gross return has the interpretation of the future value of $1 invested in the asset for one-month with simple interest rate Rt. Solving (1.8) for $P_{t}$ gives $P_{t} = P_{t-1}(1 + R_{t})$,
+
+which shows $P_{t}$ can be thought of as the future value of $P_{t-1}$ invested for one month with simple return $R_{t}$. Unless otherwise stated, 
+when we refer to returns we mean net returns. Since asset prices must always be non-negative (a long position in an asset is a limited liability investment), the smallest value for $R_{t}$ is -1 or -100%.
+
+`Example 1.6. Simple return calculation.`
+
+Consider a one-month investment in Microsoft stock. Suppose you buy the stock in month $t−1$ at $P_{t−1}$ = $85 and sell the stock the next month for 
+$P_{t}$ = $90. Further assume that Microsoft does not pay a dividend between months $t−1$ and $t$ . The one-month simple net and gross returns are then:
+
+$$R_{t} = \frac{\$90 - \$85}{\$85} = \frac{\$90}{\$85} − 1 = 1.0588 − 1 = 0.0588,$$
+
+$$1 + R_{t} = 1.0588.$$
+
+The one-month investment in Microsoft yielded a 5.88% per month return. Alternatively, $1 invested in Microsoft stock in month $t−1$ grew 
+to $1.0588 in month $t$. The calculations using R are:
+
+```R
+P0 = 90
+Pm1 = 85
+R0 = (P0 - Pm1)/Pm1
+c(R0, 1 + R0)
+
+## [1] 0.0588 1.0588
+```
 
 #### Simple Returns - Python Example
+
+Python: We will use formula (a) and pandas built in function pct_change to compute the simple returns for each day, for AAPL.
 
 ```python
 import pandas as pd 
@@ -370,13 +398,18 @@ df = df.loc[:, ['Adj Close']]
 df.rename(columns={'Adj Close':'adj_close'}, inplace=True)
 
 df['simple_rtn'] = df.adj_close.pct_change()
+
+# remove redundant data
+df.drop('adj_close', axis=1, inplace=True)
+# Returns cannot be computed for the first observation, as there is no previous observation to use. R returns NA in this case. Clean the data.
+df.dropna(axis=0, inplace=True)
 ```
 
 #### Simple Returns - R Example
 
 ```R
-# load the "dplyr" package
-library(dplyr)
+## load the "dplyr" package
+#library(dplyr)
 # load the "quantmod" package
 library(quantmod)
 
@@ -396,23 +429,178 @@ AAPL <- getSymbols('AAPL',
 # shift the series back by one period and compute returns
 r <- df$AAPL.Adjusted/lag(df$AAPL.Adjusted, k = 1) - 1
 
-# Do the same calculation above as a data frame.
-dat <- AAPL
-df <- as.data.frame(sapply( names(dat), function(x) coredata(dat[[x]])[,6] ))
+# drop NA from data
+# Returns cannot be computed for the first observation, as there is no previous observation to use. R returns NA in this case. Clean the data.
+r <- na.omit(r)
 
-## Note that this takes the Adjusted close values (see: dat[[x]])[,6]), the Objects have more, e.g.:
+# build a data.frame containing simple returns
+df <- data.frame(r)
+colnames(df) <- c('simple_rtn')
 
-## names(dat[["AAPL"]])
-## [1] "AAPL.Open"     "AAPL.High"     "AAPL.Low"      "AAPL.Close"
-## [5] "AAPL.Volume"   "AAPL.Adjusted"
+## Do the same calculation above as a data frame.
+#dat <- AAPL
+#df <- as.data.frame(sapply( names(dat), function(x) coredata(dat[[x]])[,6] ))
+#
+### Note that this takes the Adjusted close values (see: dat[[x]])[,6]), the Objects have more, e.g.:
+#
+### names(dat[["AAPL"]])
+### [1] "AAPL.Open"     "AAPL.High"     "AAPL.Low"      "AAPL.Close"
+### [5] "AAPL.Volume"   "AAPL.Adjusted"
+#
+#rownames(df) <-
+#    as.data.frame( sapply( names(dat), function(x) as.character(index(dat[[x]])) ) )[,6]
+#
+#df %>% 
+#  mutate(lagged = lag(AAPL)) %>% 
+#  mutate(simple_rtn = (AAPL - lagged) / lagged) %>% 
+#  select(-lagged)
+#
+## remove redundant data
+#df <- df[, (names(df) %in% c('simple_rtn'))]
+```
 
-rownames(df) <-
-    as.data.frame( sapply( names(dat), function(x) as.character(index(dat[[x]])) ) )[,1]
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
 
-df %>% 
-  mutate(lagged = lag(AAPL)) %>% 
-  mutate(simple_rtn = (AAPL - lagged) / lagged) %>% 
-  select(-lagged)
+### Cumulative Returns (or, Multiperiod Returns)
+
+The simple two-month return on an investment in an asset between months $t−2$ and $t$ is defined as:
+
+$$R_{t}(2) = \frac{P_{t} - P_{t-2}}{P_{t-2}} = \frac{P_{t}}{P_{t-2}} − 1.$$
+
+Writing $\frac{P_{t}}{P_{t-2}} = \frac{P_{t}}{P_{t-1}} * \frac{P_{t-1}}{P_{t-2}}$ the two-month return can be expressed as:
+
+$$R_{t}(2) = \frac{P_{t}}{P_{t-1}} * \frac{P_{t-1}}{P_{t-2}} - 1$$
+
+$$ \ \ \ \ \ \ \ \ \ \ \ = (1 + R_{t})(1 + R_{t-1}) - 1$$
+
+Then the simple two-month gross return becomes:
+
+$$1 + R_{t}(2) = (1 + R_{t})(1 + R_{t-1}) = 1 + R_{t-1} + R_{t} + R_{t-1}R_{t} ,$$
+
+which is a product of the two simple one-month gross returns and not one plus the sum of
+the two one-month returns. Hence,
+
+$$R_{t}(2) = R_{t-1} + R_{t} + R_{t-1}R_{t} .$$
+
+If, however, $R_{t-1}$ and $R_{t}$ are small then $R_{t-1}R_{t} \approx 0$ and $1 + R_{t}(2) \approx 1 + R_{t−1} + R_{t}$ so that
+$R_{t}(2) \approx R_{t−1} + R_{t}$ .
+
+`Example 1.7. Computing two-period returns.`
+
+Continuing with the previous example, suppose that the price of Microsoft stock in month $t−2$ is $80 and no dividend is paid between 
+months $t−2$ and $t$. The two-month net return is:
+
+$$R_{t}(2) = \frac{\$90 - \$80}{\$80} = \frac{\$90}{\$80} − 1 = 1.1250 − 1 = 0.1250 ,$$
+
+or 12.50% per two months. The two one-month returns are:
+
+$$R_{t−1} = \frac{\$85 - \$80}{\$80} = 1.0625 − 1 = 0.0625 ,$$
+
+$$R_{t} = \frac{\$90 - \$85}{\$85} = 1.0588 − 1 = 0.0588 ,$$
+
+and the geometric average of the two one-month gross returns is:
+
+$$1 + R_{t}(2) = 1.0625 × 1.0588 = 1.1250 .$$
+
+The calculations can be vectorized in R as follows:
+
+```R
+Pm2 = 80
+# create vector of prices
+P = c(Pm2, Pm1, P0)
+# calculate vector of 1-month returns from vector of prices
+R = (P[2:3] - P[1:2])/P[1:2]
+R
+## [1] 0.0625 0.0588
+# calculate 2-month return from 2 1-month returns
+(1 + R[1]) * (1 + R[2]) - 1
+## [1] 0.125
+# same calculation vectorized using R function cumprod()
+cumprod(1 + R) - 1
+## [1] 0.0625 0.1250
+```
+
+In general, the k-month gross return is defined as the product of k one-month gross returns:
+
+$$1 + R_{t}(k) = (1 + R_{t})(1 + R_{t-1})...(1 + R_{t-k+1}) \ \ \ \ (1.9)$$
+
+$$ \ \ \ \ \ = \prod_{j=0}^{k-1}(1 + R_{t-j}) .$$
+
+
+#### Cumulative Returns (or, Multiperiod Returns) - Python Example
+
+```python
+import pandas as pd 
+import numpy as np
+import yfinance as yf
+
+df = yf.download('AAPL', 
+                 start='2000-01-01', 
+                 end='2010-12-31',
+                 progress=False)
+
+df = df.loc[:, ['Adj Close']]
+df.rename(columns={'Adj Close':'adj_close'}, inplace=True)
+
+df['simple_rtn'] = df.adj_close.pct_change()
+df['cumulative_rtn'] = (1 + df['simple_rtn']).cumprod() - 1
+
+# remove redundant data
+df.drop(columns=['adj_close', 'simple_rtn'], inplace=True)
+```
+
+
+#### Cumulative Returns (or, Multiperiod Returns) - R Example
+
+```R
+## load the "dplyr" package
+#library(dplyr)
+# load the "quantmod" package
+library(quantmod)
+
+# Get Apple stock quotes (daily).
+AAPL <- getSymbols('AAPL',
+                   from = '2016/12/31',
+                   to = '2018/12/31',
+                   periodicity = 'daily')
+## 'getSymbols' currently uses auto.assign=TRUE by default, but will
+## use auto.assign=FALSE in 0.5-0. You will still be able to use
+## 'loadSymbols' to automatically load data. getOption("getSymbols.env")
+## and getOption("getSymbols.auto.assign") will still be checked for
+## alternate defaults.
+## 
+## [1] "AAPL"
+
+# shift the series back by one period and compute returns
+r <- df$AAPL.Adjusted/lag(df$AAPL.Adjusted, k = 1) - 1
+
+# calculate cumulative returns
+r.cum <- cumprod(1+r) - 1
+
+# build a data.frame containing simple returns
+df <- data.frame(r.cum)
+colnames(df) <- c('cumulative_rtn')
+
+## Do the same calculation above as a data frame.
+#dat <- AAPL
+#df <- as.data.frame(sapply( names(dat), function(x) coredata(dat[[x]])[,6] ))
+#
+### Note that this takes the Adjusted close values (see: dat[[x]])[,6]), the Objects have more, e.g.:
+#
+### names(dat[["AAPL"]])
+### [1] "AAPL.Open"     "AAPL.High"     "AAPL.Low"      "AAPL.Close"
+### [5] "AAPL.Volume"   "AAPL.Adjusted"
+#
+#rownames(df) <-
+#    as.data.frame( sapply( names(dat), function(x) as.character(index(dat[[x]])) ) )[,6]
+#
+#df %>% 
+#  mutate(lagged = lag(AAPL)) %>% 
+#  mutate(simple_rtn = (AAPL - lagged) / lagged) %>% 
+#  select(-lagged)
+#
+## remove redundant data
+#df <- df[, (names(df) %in% c('simple_rtn'))]
 ```
 
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
