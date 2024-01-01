@@ -46,7 +46,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
     - 6.18. [Chapter 18 - The Singular Value Decomposition](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Linear%20Algebra%20With%20Python/Chapter%2018%20-%20The%20Singular%20Value%20Decomposition.ipynb)
     - 6.19. [Chapter 19 - Multivariate Normal Distribution](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Linear%20Algebra%20With%20Python/Chapter%2019%20-%20Multivariate%20Normal%20Distribution.ipynb)
 7. [Stock Returns Analysis](#stock-returns-analysis)
-    - 7.1. [Calculate Stock Returns using Python]([#future-value-present-value-and-simple-interest](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_python.ipynb))
+    - 7.1. [Calculate Stock Returns using Python]([#future-value-present-value-and-simple-interest](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_python.ipynb)
     - 7.2. [Calculate Stock Returns using Python](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_R.ipynb)
 8. [Covariance and Correlation Matrix of Stock Returns](#covariance-and-correlation-matrix-of-stock-returns)
 
