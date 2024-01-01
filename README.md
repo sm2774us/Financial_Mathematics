@@ -45,7 +45,10 @@ Personal Repository for Quantitative Finance and AI/ML topics
     - 6.17. [Chapter 17 - Symmetric Matrices , Quadratic Form and Cholesky Decomposition](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Linear%20Algebra%20With%20Python/Chapter%2017%20-%20Symmetric%20Matrices%20%2C%20Quadratic%20Form%20and%20Cholesky%20Decomposition.ipynb)
     - 6.18. [Chapter 18 - The Singular Value Decomposition](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Linear%20Algebra%20With%20Python/Chapter%2018%20-%20The%20Singular%20Value%20Decomposition.ipynb)
     - 6.19. [Chapter 19 - Multivariate Normal Distribution](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Linear%20Algebra%20With%20Python/Chapter%2019%20-%20Multivariate%20Normal%20Distribution.ipynb)
-7. [Covariance and Correlation Matrix of Stock Returns](#covariance-and-correlation-matrix-of-stock-returns)
+7. [Stock Returns Analysis](#stock-returns-analysis)
+    - 7.1. [Calculate Stock Returns using Python]([#future-value-present-value-and-simple-interest](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_python.ipynb))
+    - 7.2. [Calculate Stock Returns using Python](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_R.ipynb)
+8. [Covariance and Correlation Matrix of Stock Returns](#covariance-and-correlation-matrix-of-stock-returns)
 
 ## Rules of Numbers
 
@@ -764,5 +767,13 @@ head(x)
 ## 2007-01-10 0.15751779 0.15248306 0.15751779
 ## 2007-01-11 0.14319811 0.13813675 0.14319811
 ```
+
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+
+## Stock Returns Analysis
+
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+
+## Covariance and Correlation Matrix of Stock Returns
 
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
