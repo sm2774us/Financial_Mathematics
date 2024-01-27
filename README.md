@@ -48,6 +48,9 @@ Personal Repository for Quantitative Finance and AI/ML topics
 7. [Stock Returns Analysis](#stock-returns-analysis)
     - 7.1. [Calculate Stock Returns using Python](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_python.ipynb)
     - 7.2. [Calculate Stock Returns using R](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_R.ipynb)
+8. [Technical Indicators](#technical-indicators)
+    - 8.1. [MACD](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Technical_Indicators/MACD.ipynb)
+    - 8.2. [RSI](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/Technical_Indicators/RSI.ipynb)
 
 ## Rules of Numbers
 
@@ -770,5 +773,9 @@ head(x)
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
 
 ## Stock Returns Analysis
+
+<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
+
+## Technical Indicators
 
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
