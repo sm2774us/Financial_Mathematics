@@ -48,7 +48,6 @@ Personal Repository for Quantitative Finance and AI/ML topics
 7. [Stock Returns Analysis](#stock-returns-analysis)
     - 7.1. [Calculate Stock Returns using Python](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_python.ipynb)
     - 7.2. [Calculate Stock Returns using R](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/calculate_stock_returns_in_R.ipynb)
-8. [Covariance and Correlation Matrix of Stock Returns](#covariance-and-correlation-matrix-of-stock-returns)
 
 ## Rules of Numbers
 
@@ -771,9 +770,5 @@ head(x)
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
 
 ## Stock Returns Analysis
-
-<div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
-
-## Covariance and Correlation Matrix of Stock Returns
 
 <div align="right"><a href="#top" target="_blacnk"><img src="https://img.shields.io/badge/Back To Top-orange?style=for-the-badge&logo=expo&logoColor=white" /></a></div>
