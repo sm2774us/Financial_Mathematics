@@ -14,7 +14,7 @@ Personal Repository for Quantitative Finance and AI/ML topics
     - 5.1. [Simple Returns](#simple-returns)
         - 5.1.1. [Simple Returns - Python Example](#simple-returns---python-example)
         - 5.1.2. [Simple Returns - R Example](#simple-returns---r-example)
-        - 5.1.3. [Reference: Introduction To Computational Finance And Financial Econometrics With R](https://github.com/sm2774us/Finance_and_AI_ML/blob/main/IntroductionToComputationalFinanceAndFinancialEconometricsWithR.pdf)
+(https://github.com/sm2774us/Finance_and_AI_ML/blob/main/IntroductionToComputationalFinanceAndFinancialEconometricsWithR.pdf)
     - 5.2. [Cumulative Returns (or, Multiperiod Returns)](#cumulative-returns-or-multiperiod-returns)
         - 5.2.1. [Cumulative Returns (or, Multiperiod Returns) - Python Example](#cumulative-returns-or-multiperiod-returns---python-example)
         - 5.2.2. [Cumulative Returns (or, Multiperiod Returns) - R Example](#cumulative-returns-or-multiperiod-returns---r-example)
