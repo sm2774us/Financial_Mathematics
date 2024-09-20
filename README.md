@@ -595,7 +595,7 @@ colnames(df) <- c('cumulative_rtn')
 
 We calculate log returns as
 
-$$r_{t} = \frac{log(P_{t})}{log(P_{t-1})} = log(P_{t}) - log(P_{t-1})
+$$r_{t} = \frac{log(P_{t})}{log(P_{t-1})} = log(P_{t}) - log(P_{t-1})$$
 
 where $P$ is the price of an asset and t is a time period.
 
